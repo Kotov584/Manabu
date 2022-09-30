@@ -1,4 +1,4 @@
 # Manabu
-Manabu - Open-source learning web application which aims to simplify online studies
+Manabu - Open-source learning tool which aims to simplify online studies
 
 This project is underdevelopment.
