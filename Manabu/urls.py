@@ -25,11 +25,10 @@ urlpatterns = [
     path('file-manager/', include('file_manager.urls')),
     path('grades/', include('grades.urls')),
     path('groups/', include('groups.urls')),
-    path('messenger/', include('messengerlls.urls')),
+    path('messenger/', include('messenger.urls')),
     path('permissions/', include('permissions.urls')),
     path('roles/', include('roles.urls')),
     path('settings/', include('settings.urls')),
-    path('transactions/', include('messengerlls.urls')),
-    path('messenger/', include('transcations.urls')),
+    path('transactions/', include('transactions.urls')), 
     path('users/', include('users.urls'))
 ]
