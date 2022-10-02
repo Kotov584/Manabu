@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manabu - Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'assets/css/main/app.css' %}">
+    <link rel="shortcut icon" href="{% static 'assets/images/logo/favicon.svg' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'assets/images/logo/favicon.png' %}" type="image/png">
+    <link rel="stylesheet" href="{% static 'assets/css/shared/iconly.css' %}">
+</head>
+
+<body>
+    <div id="app">
+        <div id="main" class="layout-horizontal">
+            <header class="mb-5">
+                <div class="header-top">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo"></a>
+                        </div>
+                        <div class="header-top-right">
+
+                            <div class="dropdown">
+                                <a href="#" id="topbarUserDropdown" class="user-dropdown d-flex align-items-center dropend dropdown-toggle " data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="avatar avatar-md2" >
+                                        <img src="assets/images/faces/1.jpg" alt="Avatar">
+                                    </div>
+                                    <div class="text">
+                                        <h6 class="user-dropdown-name">John Ducky</h6>
+                                        <p class="user-dropdown-status text-sm text-muted">Member</p>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="topbarUserDropdown">
+                                  <li><a class="dropdown-item" href="#">My Account</a></li>
+                                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item" href="auth-login.html">Logout</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Burger button responsive -->
+                            <a href="#" class="burger-btn d-block d-xl-none">
+                                <i class="bi bi-justify fs-3"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <nav class="main-navbar">
+                    <div class="container">
+                        <ul>
+                            
+                            
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>  
+
+                            <li class="menu-item active has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-grid-1x2-fill"></i>
+                                    <span>Courses</span>
+                                </a>
+                                <div
+                                    class="submenu ">
+                                    <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
+                                    <div class="submenu-group-wrapper"> 
+                                        <ul class="submenu-group">
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Grades
+                                                </a> 
+                                            </li>     
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Assessments
+                                                </a> 
+                                            </li>     
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Exams
+                                                </a> 
+                                            </li>     
+                                            
+                                        </ul> 
+                                        
+                                    </div>
+                                </div>
+                            </li>  
+
+                            <li class="menu-item active has-sub">
+                                <a href="#" class='menu-link'>
+                                    <i class="bi bi-grid-1x2-fill"></i>
+                                    <span>Admin</span>
+                                </a>
+                                <div
+                                    class="submenu ">
+                                    <!-- Wrap to submenu-group-wrapper if you want 3-level submenu. Otherwise remove it. -->
+                                    <div class="submenu-group-wrapper"> 
+                                        <ul class="submenu-group">
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Permissions
+                                                </a> 
+                                            </li>     
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Roles
+                                                </a> 
+                                            </li>     
+                                            
+                                            <li class="submenu-item  "> 
+                                                <a href="layout-default.html" class='submenu-link'>
+                                                    Users
+                                                </a> 
+                                            </li>     
+                                            
+                                        </ul> 
+                                        
+                                    </div>
+                                </div>
+                            </li>     
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Groups</span>
+                                </a>
+                            </li>   
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Contacts</span>
+                                </a>
+                            </li> 
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>File Manager</span>
+                                </a>
+                            </li> 
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Messenger</span>
+                                </a>
+                            </li>  
+                            
+                            <li class="menu-item">
+                                <a href="index.html" class='menu-link'>
+                                    <i class="bi bi-grid-fill"></i>
+                                    <span>Transactions</span>
+                                </a>
+                            </li> 
+
+                        </ul>
+                    </div>
+                </nav>
+
+            </header>
+
+            <div class="content-wrapper container">
+                
+<div class="page-heading">
+    <h3>Dashboard</h3>
+</div>
+<div class="page-content">
+    <section class="row">
+        <div class="col-12 col-lg-9">
+            <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-4 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="stats-icon purple mb-2">
+                                        <i class="iconly-boldShow"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                    <h6 class="text-muted font-semibold">Views</h6>
+                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-4 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="stats-icon blue mb-2">
+                                        <i class="iconly-boldProfile"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                    <h6 class="text-muted font-semibold">Followers</h6>
+                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-4 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="stats-icon green mb-2">
+                                        <i class="iconly-boldAdd-User"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                    <h6 class="text-muted font-semibold">Following</h6>
+                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-4 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                    <div class="stats-icon red mb-2">
+                                        <i class="iconly-boldBookmark"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                    <h6 class="text-muted font-semibold">Saved Post</h6>
+                                    <h6 class="font-extrabold mb-0">112</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+        <div class="col-12 col-lg-3">
+            <div class="card">
+                <div class="card-body py-4 px-5">
+                    
+                    <div class="d-flex align-items-center"> 
+                        <div class="ms-3 name">
+                            <h5 class="font-bold">John Duck</h5>
+                            <h6 class="text-muted mb-0">@johnducky</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </section>
+</div>
+
+            </div>
+
+            <footer>
+                <div class="container">
+                    <div class="footer clearfix mb-0 text-muted">
+                        <div class="float-start">
+                            <p>2022 &copy; Developed by <a href="https://github.com/kotov584">Kotov584</a>. Designed by <a href="https://saugi.me">Saugi</a>.</p>
+                        </div> 
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="{% static 'assets/js/bootstrap.js' %}"></script>
+    <script src="{% static 'assets/js/app.js' %}"></script>
+    <script src="{% static 'assets/js/pages/horizontal-layout.js' %}"></script> 
+    <script src="{% static 'assets/extensions/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'assets/js/pages/dashboard.js' %}"></script>
+</body>
+</html>
