@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    {% load static %} 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
@@ -16,7 +17,7 @@
           <header class="flex justify-between items-center bg-gray-50 p-4">
             <div class="flex">Manabu</div>
             <div class="flex mr-10">
-                <img class="" src="images/user_photo.png"/> 
+                <img class="" src="{% static 'images/user_photo.png' %}"/> 
             </div>
           </header>
 
@@ -109,7 +110,7 @@
             <main class="flex flex-col h-full w-full bg-gray-100 overflow-x-hidden overflow-y-auto mb-14">
               <div class="flex w-full mx-auto px-6 py-8">
                 <div class="flex flex-col w-full h-full text-gray-900 text-xl">
-                    Blank page
+                    {% block content %}{% endblock %}
                 </div>
               </div>
             </main> 
