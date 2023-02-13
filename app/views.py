@@ -13,7 +13,7 @@ from generic import GenericAPIView
 
 class BookView(GenericAPIView):
     model_class = Book
-    permission_classes = [IsAuthenticated, ReadDataPermission] 
+    permission_classes = [IsAuthenticated] 
 
     def get(self, request, *args, **kwargs): 
         return super().get(request, *args, **kwargs)

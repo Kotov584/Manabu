@@ -1,4 +1,4 @@
-def get_permissions_for_user(user, method, mode = None):
+def get_permissions_for_user(user, method, model, mode = None):
     allowed_fields = []
 
     user_groups = user.groups.all()
@@ -7,21 +7,16 @@ def get_permissions_for_user(user, method, mode = None):
         group_permissions = group.permissions.all()
 
         for permission in group_permissions:  
-            if mode == "create":
-                if permission.codename.endswith('_create'):
-                    allowed_fields.append(permission.codename.split('_create')[0])
+            method_mapping = {
+                "create": "create_{}".format(model),
+                "read": "read_{}".format(model),
+                "update": "update_{}".format(model),
+                "delete": "delete_{}".format(model)
+            }
 
-            if mode == "read":
-                if permission.codename.endswith('_read'):
-                    allowed_fields.append(permission.codename.split('_read')[0])
-
-            if mode == "update":
-                if permission.codename.endswith('_update'):
-                    allowed_fields.append(permission.codename.split('_update')[0])
-
-            if mode == "delete":
-                if permission.codename.endswith('_delete'):
-                    allowed_fields.append(permission.codename.split('_delete')[0])
+            if method in method_mapping:
+                if permission.codename == method_mapping[method]:
+                    allowed_fields.append(permission.codename)
 
             if mode == "fields":
                 if permission.codename.endswith('_field') and permission.codename.startswith(method): 

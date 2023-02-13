@@ -26,24 +26,3 @@ class UpdateSpecificFieldsOnly(permissions.BasePermission):
             if field not in allowed_fields:
                 return False
         return True
-'''
-class CreateDataPermission(permissions.BasePermission):
-    def has_permission(self, request, view):
-        allowed_fields = get_permissions_for_user(request.user, "create", mode="create")
-        return any([field in allowed_fields for field in request.data.keys()])
-
-class ReadDataPermission(permissions.BasePermission):
-    def has_permission(self, request, view):
-        allowed_fields = get_permissions_for_user(request.user, "read", mode="read")
-        return any([field in allowed_fields for field in request.data.keys()])
-
-class UpdateDataPermission(permissions.BasePermission):
-    def has_permission(self, request, view):
-        allowed_fields = get_permissions_for_user(request.user, "update", mode="update")
-        return any([field in allowed_fields for field in request.data.keys()])
-
-class DeleteDataPermission(permissions.BasePermission):
-    def has_permission(self, request, view):
-        allowed_fields = get_permissions_for_user(request.user, "delete", mode="delete")
-        return any([field in allowed_fields for field in request.data.keys()])
-'''
