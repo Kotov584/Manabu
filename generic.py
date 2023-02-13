@@ -5,7 +5,38 @@ from rest_framework.exceptions import ValidationError
 from rest_framework import permissions
 from django.forms.models import model_to_dict
 from django.contrib.auth.models import User, Group, Permission
-from helpers import *
+
+def get_permissions_for_user(user, method, model, mode = None):
+    allowed_fields = []
+
+    user_groups = user.groups.all()
+
+    for group in user_groups: 
+        group_permissions = group.permissions.all()
+
+        for permission in group_permissions:  
+            method_mapping = {
+                "create": "add_{}".format(model),
+                "read": "view_{}".format(model),
+                "update": "change_{}".format(model),
+                "delete": "delete_{}".format(model)
+            }
+
+            if method in method_mapping: 
+                if permission.codename == method_mapping[method]:
+                    allowed_fields.append(permission.codename)
+
+            if mode == "fields":
+                if permission.codename.endswith('_field') and permission.codename.startswith(method): 
+                    field_name = permission.codename.replace('_field', '')
+                    field_name_parts = field_name.split("_") 
+                    field_name_parts = field_name_parts[2:]
+                    allowed_fields.append(field_name_parts)
+
+    if not allowed_fields:
+        return None
+
+    return allowed_fields[0] 
 
 class GenericRepository:
     def __init__(self, model_class): 
@@ -44,10 +75,12 @@ class GenericAPIView(APIView):
         self.repository = GenericRepository(self.model_class) 
 
     def get(self, request, id=None, format=None):
-        allowed_fields = get_permissions_for_user(request.user, 'view_', 'fields')
+        allowed_fields = get_permissions_for_user(request.user, 'read', self.model_name)  
 
         if not allowed_fields:
             return Response({"error": "Permission denied"}, status=status.HTTP_400_BAD_REQUEST)
+
+        allowed_fields = get_permissions_for_user(request.user, 'view_', self.model_name, 'fields') 
 
         if id:
             instance = self.repository.get(id=id)
@@ -111,3 +144,21 @@ class GenericAPIView(APIView):
         self.repository.delete(instance)
         
         return Response({"message": "Instance deleted"})
+
+class GenericView(GenericAPIView):
+    model_class = None
+    model_name = None
+    model_name_plural = None
+    permission_classes = None
+
+    def get(self, request, *args, **kwargs):  
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return super().put(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return super().delete(request, *args, **kwargs)

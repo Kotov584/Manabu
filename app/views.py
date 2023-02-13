@@ -9,23 +9,13 @@ from django.forms.models import model_to_dict
 from django.contrib.auth.models import User, Group, Permission
 from permissions import *
 from app.models import Book 
-from generic import GenericAPIView
+from generic import GenericView
 
-class BookView(GenericAPIView):
+class BookView(GenericView):
     model_class = Book
+    model_name = "book"
+    model_name_plural = "books"
     permission_classes = [IsAuthenticated] 
-
-    def get(self, request, *args, **kwargs): 
-        return super().get(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        return super().post(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return super().put(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return super().delete(request, *args, **kwargs)
 
 class HelloView(APIView):
     permission_classes = [IsAuthenticated]
