@@ -111,34 +111,3 @@ class GenericAPIView(APIView):
         self.repository.delete(instance)
         
         return Response({"message": "Instance deleted"})
-
-'''
-
-
-    def get(self, request, id=None, format=None):
-        if id:
-            instance = self.repository.get(id=id)
-
-            if not instance:
-                return Response({"error": "Instance not found"}, status=status.HTTP_404_NOT_FOUND)
-
-            instance_dict = model_to_dict(instance)
-            allowed_fields = get_permissions_for_user(request.user, 'view_', 'fields')
-            filtered_instance = {field: instance_dict[field] for field in allowed_fields if field in instance_dict}
-            
-            return Response({"instance": filtered_instance})
-
-        instances = self.repository.all()
-
-        if not instances:                
-            return Response({"error": "Instances not found"}, status=status.HTTP_404_NOT_FOUND)
-
-        instance_dicts = [model_to_dict(inst) for inst in instances]
-        filtered_instances = []
-        allowed_fields = get_permissions_for_user(request.user, 'view_', 'fields')
-        for instance_dict in instance_dicts:
-            filtered_instance = {field: instance_dict[field] for field in allowed_fields if field in instance_dict}
-            filtered_instances.append(filtered_instance)
-
-        return Response({"instances": filtered_instances})
-'''
