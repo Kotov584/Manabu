@@ -10,32 +10,27 @@ def get_permissions_for_user(user, method, model, mode = None):
 
     user_groups = user.groups.all()
 
+    method_mapping = {
+        "create": "add_{}".format(model),
+        "read": "view_{}".format(model),
+        "update": "change_{}".format(model),
+        "delete": "delete_{}".format(model)
+    }
+
     for group in user_groups: 
         group_permissions = group.permissions.all()
 
-        for permission in group_permissions:  
-            method_mapping = {
-                "create": "add_{}".format(model),
-                "read": "view_{}".format(model),
-                "update": "change_{}".format(model),
-                "delete": "delete_{}".format(model)
-            }
-
-            if method in method_mapping: 
-                if permission.codename == method_mapping[method]:
-                    allowed_fields.append(permission.codename)
-
-            if mode == "fields":
-                if permission.codename.endswith('_field') and permission.codename.startswith(method): 
+        for permission in group_permissions:   
+            if permission.codename != method_mapping[method]:
+                if permission.codename.startswith(method_mapping[method]) and permission.codename.endswith('_field'): 
                     field_name = permission.codename.replace('_field', '')
-                    field_name_parts = field_name.split("_") 
-                    field_name_parts = field_name_parts[2:]
-                    allowed_fields.append(field_name_parts)
+                    field_name = field_name.replace(f'{method_mapping[method]}_', '')
+                    allowed_fields.append(field_name)
 
     if not allowed_fields:
         return None
 
-    return allowed_fields[0] 
+    return allowed_fields
 
 class GenericRepository:
     def __init__(self, model_class): 
@@ -67,7 +62,7 @@ class GenericRepository:
 
 class GenericAPIView(APIView):
     model_class = None
-    permisssion_classes = None
+    permission_classes = None
 
     def __init__(self, *args, **kwargs): 
         super().__init__(*args, **kwargs)
@@ -79,8 +74,6 @@ class GenericAPIView(APIView):
         if not allowed_fields:
             return Response({"error": "Permission denied"}, status=status.HTTP_400_BAD_REQUEST)
 
-        allowed_fields = get_permissions_for_user(request.user, 'view_', self.model_name, 'fields') 
-
         if id:
             instance = self.repository.get(id=id)
 
@@ -90,7 +83,7 @@ class GenericAPIView(APIView):
             instance_dict = model_to_dict(instance) 
             filtered_instance = {field: instance_dict[field] for field in allowed_fields if field in instance_dict}
             
-            return Response({"instance": filtered_instance})
+            return Response({self.model_name: filtered_instance})
 
         instances = self.repository.all()
 
@@ -103,7 +96,7 @@ class GenericAPIView(APIView):
             filtered_instance = {field: instance_dict[field] for field in allowed_fields if field in instance_dict}
             filtered_instances.append(filtered_instance)
 
-        return Response({"instances": filtered_instances})
+        return Response({self.model_name_plural: filtered_instances})
 
     def post(self, request, format=None):
         try:
