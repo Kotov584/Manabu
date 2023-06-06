@@ -12,7 +12,7 @@ This project is a Learning Management System (LMS) designed to help educational 
 
 ## Installation
 
-1. Clone the repository: `git clone https://github.com/your-username/lms-project.git`
+1. Clone the repository: `git clone https://github.com/Kotov584/Manabu.git`
 2. Install the required dependencies: `pip install -r requirements.txt`
 3. Set up the database and perform migrations: `python manage.py migrate`
 4. Start the development server: `python manage.py runserver`
