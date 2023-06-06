@@ -1,0 +1,36 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+
+<div class="flex flex-row mt-6">
+  <div class="flex flex-col w-1/5 bg-white px-4 py-8 border-r">
+    <h2 class="text-xl font-semibold mb-4">Course Topics</h2>
+    <ul>
+      {% for topic in topics %} 
+      <li class="mb-4">
+        <a href="#" class="text-gray-800 hover:text-gray-900 font-medium">{{ topic.title }}</a>
+        <!--<ul class="ml-4">
+          <li class="mb-2">
+            <a href="#" class="text-gray-600 hover:text-gray-800">With subtopic!</a>
+            <ul class="ml-4">
+              <li class="mb-2">
+                <a href="#" class="text-gray-600 hover:text-gray-800">Assessment 1</a>
+              </li>
+            </ul>
+          </li>
+        </ul>-->
+      </li> 
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="flex flex-col w-4/5 bg-gray-50 px-8 py-8">
+    {% for topic in topics %} 
+    <h2 class="text-2xl font-semibold mb-4">{{ topic.title }}</h2>
+    <p class="text-gray-800 mb-8">{{ topic.content }}</p>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

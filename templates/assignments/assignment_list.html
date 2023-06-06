@@ -1,0 +1,28 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Assignments{% endblock %}  
+
+{% block content %}
+    <div class="bg-gray-100 p-4 rounded-lg mb-4"> 
+      <table class="w-full table-auto">
+        <thead>
+          <tr> 
+            <th class="px-4 py-2 text-left">Assignment name</th>
+            <th class="px-4 py-2 text-left">Dude date</th>
+            <th class="px-4 py-2 text-left">Grade / Mark</th>
+            <th class="px-4 py-2 text-left">Attempt</th> 
+          </tr>
+        </thead>
+        <tbody> 
+          {% for user_assignment in user_assignments %}
+          <tr> 
+            <td class="border px-4 py-2">{{ user_assignment.assignment.title }}</td>  
+            <td class="border px-4 py-2">{{ user_assignment.assignment.due_date }}</td>  
+            <td class="border px-4 py-2">{{ user_assignment.grade }}</td>
+            <td class="border px-4 py-2">{{ user_assignment.attempt }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table> 
+    </div> 
+{% endblock %}

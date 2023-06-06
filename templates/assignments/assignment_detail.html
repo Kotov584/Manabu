@@ -1,0 +1,37 @@
+{% extends 'layouts/layout.html' %}
+
+{% block title %}Assignment Detail{% endblock %}
+
+{% block content %}
+  <div class="bg-gray-100 p-4 rounded-lg mb-4">
+    <div class="flex flex-col sm:flex-row justify-between items-start mb-8">
+      <div class="flex-1">
+        <h2 class="text-lg font-semibold mb-2">Assignment Information</h2>
+        <p class="text-gray-500">Assignment name: <span class="font-semibold">{{ assignment.title }}</span></p>
+        <p class="text-gray-500">Due date: <span class="font-semibold">{{ assignment.due_date }}</span></p>
+        <p class="text-gray-500">Time remaining: <span class="font-semibold">{{ time_remaining }}</span></p>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
+      <div class="flex-1">
+        <h2 class="text-lg font-semibold mb-2">Submission Information</h2>
+        <p class="text-gray-500">Submission status: <span class="font-semibold">{{ submission_status }}</span></p>
+        <p class="text-gray-500">File size limit:<span class="font-semibold">{{ file_size_limit }}</span></p>
+        <p class="text-gray-500">Supported documents:<span class="font-semibold">{{ supported_documents }}</span></p>
+      </div>
+    </div>
+
+    <div class="flex-none mt-4 sm:mt-0">
+      <form action="{% url 'upload_assignment' assignment.id %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="file" class="hidden" id="file-input">
+        <label for="file-input" class="bg-gray-700 hover:bg-gray-800 text-white py-2 px-4 rounded-md text-sm font-medium flex items-center transition duration-200 ease-in-out cursor-pointer">
+          <i class="bi bi-cloud-upload-fill text-lg mr-2"></i>
+          <span>Upload</span>
+        </label>
+        <button type="submit" class="hidden" id="upload-btn"></button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

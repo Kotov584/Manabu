@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    {% csrf_token %}
+    <nav class="bg-gray-800">
+        <div class="mx-auto sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-16">
+            <div class="flex items-center">
+              <a href="/dashboard" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-ease duration-200"><i class="bi bi-house"></i> Home</a>
+              <a href="/courses" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-ease duration-200"><i class="bi bi-book"></i> Courses</a>
+              <a href="/assignments" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-ease duration-200"><i class="bi bi-file-earmark-text"></i> Assignments</a>
+              <a href="/grades" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-ease duration-200"><i class="bi bi-bar-chart"></i> Grades</a>
+              <!--<a href="/events" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-ease duration-200"><i class="bi bi-calendar"></i> Calendar</a>-->
+            </div>
+            <!--<div class="flex items-center">
+              <form class="relative mx-2">
+                <input type="text" placeholder="Search" class="bg-transparent py-1 px-2 rounded-md text-gray-200 focus:outline-none hover:ring-2 hover:ring-gray-700 focus:ring-2 focus:ring-gray-500 caret-gray-500">
+                <button type="submit" class="absolute right-0 top-0 bottom-0 px-3 py-1">
+                  <i class="bi bi-search text-gray-400"></i>
+                </button>
+              </form>
+              <a href="#" class="text-gray-300 hover:text-white hover:bg-gray-700 transition-ease duration-200 mx-2">
+                <i class="bi bi-bell text-lg"></i>
+              </a>
+              <div class="mx-2">
+                <img src="https://randomuser.me/api/portraits/women/79.jpg" alt="User Image" class="w-8 h-8 rounded-full">
+              </div>
+            </div>-->
+          </div>
+        </div>
+    </nav>   
+    <div class="mx-auto my-8 px-4 max-w-screen-2xl">
+        <div class="mx-auto">
+          <h1 class="text-3xl font-bold">
+            {% block title %}{% endblock %}
+          </h1> 
+
+          {% block content %}{% endblock %}
+</body>
+</html>
